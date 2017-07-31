@@ -1,0 +1,41 @@
+<div class="container">
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Posts</h1>
+
+
+<table class="table">
+  <thead class="thead-inverse">
+    <tr>
+      <th>#</th>
+      <th>title</th>
+      <th>content</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+        <% @posts.each do |post| %>
+      <tr>
+        <td><%= post.id %></td>
+        <td><%= post.title %></td>
+        <td><%= post.content %></td>
+        <td><%= link_to 'Show', post ,class: "btn btn-inverse"%></td>
+        <td><%= link_to 'Edit', edit_post_path(post) ,class: "btn btn-inverse"%></td>
+        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: '정말로 삭제?' }, class: "btn btn-inverse"%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% if user_signed_in? %>
+<%= link_to 'Sign out', destroy_user_session_path, method: 'delete', class:"btn btn-info"%>
+<%= link_to 'New Post', new_post_path, class:"btn btn-primary"%>
+<% else %>
+<%= link_to 'login', new_user_session_path, class:"btn btn-success"%>
+<%= link_to 'Sign up', new_user_registration_path, class:"btn btn-secondary" %>
+<% end%>
+
+</div>
